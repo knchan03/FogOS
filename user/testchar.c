@@ -24,6 +24,8 @@ main(void)
   int indexes[strlen(string)];
 
   findindexes(string, target, indexes, &count);
+
+  int countchar = charcount(string, target);
   
   printf("func : isdigit / char : %c : %d\n", digit, isdigit(digit));
 
@@ -57,10 +59,13 @@ main(void)
 
   printf("func : isspace / char : %c : %d\n", punct, isspace(punct));
 
-  printf("func: findindexes / string : \"%s\" / char %c / indexes : ", string, target);
+  printf("func: findindexes / string : \"%s\" / char '%c' / indexes : ", string, target);
   for (int i = 0; i < count; i++) {
   	printf("%d ", indexes[i]);
   }
+
+  printf("\nfunc : charcount / char : '%c' / str : %s / count : %d\n", target, string, countchar);
+  
   printf("\nDONE\n");
   return 0;
 }

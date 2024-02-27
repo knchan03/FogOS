@@ -49,4 +49,5 @@ int toupper(int c);
 int tolower(int c);
 int ispunct(int c);
 int isspace(int c);
-void findindexes(char* str, char c, int* indexes, int* count);
+void findindexes(char* str, int c, int* indexes, int* count);
+int charcount(char* str, int c);

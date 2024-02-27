@@ -237,7 +237,7 @@ tolower(int c)
 int 
 ispunct(int c) 
 {
-  return ((c >= '!' && c <= '/') || (c >= ':' && c <= '@') || (c >= '[' && c <= '\'') || (c >= '{' && c <= '~'));
+  return ((c >= '!' && c <= '/') || (c >= ':' && c <= '@') || (c >= '[' && c <= '`') || (c >= '{' && c <= '~'));
 }
 
 
@@ -284,7 +284,7 @@ char *strpbrk(char* str, char* substr)
   		return (char*) c;
   	}
   }
-  return 0;
+  return "\0";
 }
 
 int strfind(char* str, char* substr)

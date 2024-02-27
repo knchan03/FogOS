@@ -274,3 +274,14 @@ int charcount(char* str, int c)
   }
   return count;
 }
+
+char *strpbrk(char* str, char* substr) {
+  char *c;
+
+  for (c = str; *c != '\0'; ++c) {
+  	if (strchr(substr, *c)) {
+  		return (char*) c;
+  	}
+  }
+  return 0;
+}

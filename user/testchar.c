@@ -15,7 +15,9 @@ main(void)
 
   char space = ' ';
 
-  char* string = "Hello";
+  char* string = "Hello, my name is Kevin and I am a student";
+
+  char* substring = "stu";
 
   char target = 'l';
 
@@ -26,6 +28,8 @@ main(void)
   findindexes(string, target, indexes, &count);
 
   int countchar = charcount(string, target);
+
+  char* finder = strpbrk(string, substring);
   
   printf("func : isdigit / char : %c : %d\n", digit, isdigit(digit));
 
@@ -65,6 +69,8 @@ main(void)
   }
 
   printf("\nfunc : charcount / char : '%c' / str : %s / count : %d\n", target, string, countchar);
+
+  printf("\nfunc : strpbrk / str : '%s' / substr : %s / count : %c\n", string, substring, *finder);
   
   printf("\nDONE\n");
   return 0;

@@ -247,11 +247,17 @@ isspace(int c)
   return c == ' ' || c == '\f' || c == '\n' || c == '\r' || c == '\t' || c == '\v';
 }
 
-void findindexes(char* str, char c, int* indexes, int* count) {
-  for (int i = 0; str[i] != '\0'; i++) {
+void findindexes(char* str, char c, int* indexes, int* count) 
+{
+  *count = 0;
+  int i = 0;
+
+  while (str[i] != '\0') {
   	if (str[i] == c) {
-  		indexes[i] = i;
+  		indexes[*count] = i;
   		(*count)++;
   	}
+  	i++;
   }
+
 }

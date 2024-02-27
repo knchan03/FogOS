@@ -19,7 +19,7 @@ main(void)
 
   char target = 'l';
 
-  int count = 0;
+  int count;
 
   int indexes[strlen(string)];
 
@@ -57,9 +57,9 @@ main(void)
 
   printf("func : isspace / char : %c : %d\n", punct, isspace(punct));
 
-  printf("func: findindexes / string : \"%s\" / char %c", string, target);
+  printf("func: findindexes / string : \"%s\" / char %c / indexes : ", string, target);
   for (int i = 0; i < count; i++) {
-  	printf("%c ", indexes[i]);
+  	printf("%d ", indexes[i]);
   }
   printf("\nDONE\n");
   return 0;

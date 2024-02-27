@@ -52,3 +52,4 @@ int isspace(int c);
 int charcount(char* str, int c);
 void findindexes(char* str, int c, int* indexes, int* count);
 char* strpbrk(char* str, char* substr);
+int strcount(char* str, char* substr);

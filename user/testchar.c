@@ -15,9 +15,9 @@ main(void)
 
   char space = ' ';
 
-  char* string = "Hello, my name is Kevin and I am a student";
+  char* string = "Hello, my name is Kevin and I am a student yes yesyes yes";
 
-  char* substring = "stu";
+  char* substring = "yes";
 
   char target = 'l';
 
@@ -30,6 +30,8 @@ main(void)
   int countchar = charcount(string, target);
 
   char* finder = strpbrk(string, substring);
+
+  int substrcount = strcount(string, substring);
   
   printf("func : isdigit / char : %c : %d\n", digit, isdigit(digit));
 
@@ -71,6 +73,8 @@ main(void)
   printf("\nfunc : charcount / char : '%c' / str : %s / count : %d\n", target, string, countchar);
 
   printf("\nfunc : strpbrk / str : '%s' / substr : %s / count : %c\n", string, substring, *finder);
+
+  printf("\nfunc : strcount / str : '%s' / substr : %s / count : %d\n", string, substring, substrcount);
   
   printf("\nDONE\n");
   return 0;

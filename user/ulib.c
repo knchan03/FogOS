@@ -275,7 +275,8 @@ int charcount(char* str, int c)
   return count;
 }
 
-char *strpbrk(char* str, char* substr) {
+char *strpbrk(char* str, char* substr) 
+{
   char *c;
 
   for (c = str; *c != '\0'; ++c) {
@@ -285,3 +286,30 @@ char *strpbrk(char* str, char* substr) {
   }
   return 0;
 }
+
+int strfind(char* str, char* substr)
+{
+  while (*substr != '\0') {
+  	if (*str != *substr) {
+  		return 0;
+  	}
+  	str++;
+  	substr++;
+  }
+  return 1;
+}
+
+int strcount(char* str, char* substr)
+{
+  int count = 0;
+  while (*str != '\0') {
+  	if (strfind(str, substr)) {
+  		count++;
+  		str += strlen(substr) - 1;
+  	}
+  	str++;
+  }
+  return count;
+}
+
+

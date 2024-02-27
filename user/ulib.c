@@ -191,3 +191,67 @@ memcpy(void *dst, const void *src, uint n)
 {
   return memmove(dst, src, n);
 }
+
+int 
+isdigit(int c) 
+{
+  return (c >= '0' && c <= '9');
+}
+
+int 
+isalpha(int c) 
+{
+  return (c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z');
+}
+
+int 
+isupper(int c) 
+{
+  return c >= 'A' && c <= 'Z';
+}
+
+int 
+islower(int c) 
+{
+  return c >= 'a' && c <= 'z';
+}
+
+int 
+toupper(int c) 
+{
+  if (c >= 'a' && c <= 'z') {
+    return c - 'a' + 'A';
+  }
+  return c;
+}
+
+int 
+tolower(int c) 
+{
+  if (c >= 'A' && c <= 'Z') {
+	  return c + 'a' - 'A';
+  }
+  return c;
+}
+
+int 
+ispunct(int c) 
+{
+  return ((c >= '!' && c <= '/') || (c >= ':' && c <= '@') || (c >= '[' && c <= '\'') || (c >= '{' && c <= '~'));
+}
+
+
+int 
+isspace(int c) 
+{
+  return c == ' ' || c == '\f' || c == '\n' || c == '\r' || c == '\t' || c == '\v';
+}
+
+void findindexes(char* str, char c, int* indexes, int* count) {
+  for (int i = 0; str[i] != '\0'; i++) {
+  	if (str[i] == c) {
+  		indexes[i] = i;
+  		(*count)++;
+  	}
+  }
+}

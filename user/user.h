@@ -1,3 +1,16 @@
+#define NULL ((void *) 0)
+
+#define bool _Bool
+#define true 1
+#define false 0
+
+#define SEEK_SET        0
+#define STDIN_FILENO    0
+#define SEEK_CUR        1
+#define STDOUT_FILENO   1
+#define SEEK_END        2
+#define STDERR_FILENO   2
+
 struct stat;
 
 // system calls
@@ -22,6 +35,12 @@ int getpid(void);
 char* sbrk(int);
 int sleep(int);
 int uptime(void);
+int getcwd(char *, int);
+int shutdown(void);
+int reboot(void);
+uint64 clock(void);
+int strace(void);
+int wait2(int*, int*);
 
 // ulib.c
 int stat(const char*, struct stat*);
@@ -49,7 +68,4 @@ int toupper(int c);
 int tolower(int c);
 int ispunct(int c);
 int isspace(int c);
-int charcount(char* str, int c);
-void findindexes(char* str, int c, int* indexes, int* count);
-char* strpbrk(char* str, char* substr);
-int strcount(char* str, char* substr);
+void findindexes(char* str, char c, int* indexes, int* count);

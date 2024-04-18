@@ -9,7 +9,7 @@
 #include "user/user.h"
 #include "kernel/fcntl.h"
 
-char *argv[] = { "sh", 0 };
+char *argv[] = { "snail", 0 };
 
 int
 main(void)
@@ -23,15 +23,6 @@ main(void)
   dup(0);  // stdout
   dup(0);  // stderr
 
-  printf(" __________________\n");
-  printf("< Welcome to FogOS >\n");
-  printf(" ------------------\n");
-  printf("        \\   ^__^\n");
-  printf("         \\  (**)\\_______\n");
-  printf("            (__)\\       )\\/\\\n");
-  printf("             U  ||----w |\n");
-  printf("                ||     ||\n");
-
   for(;;){
     printf("init: starting sh\n");
     pid = fork();
@@ -40,7 +31,7 @@ main(void)
       exit(1);
     }
     if(pid == 0){
-      exec("sh", argv);
+      exec(argv[0], argv);
       printf("init: exec sh failed\n");
       exit(1);
     }

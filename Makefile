@@ -116,26 +116,38 @@ mkfs/mkfs: mkfs/mkfs.c $K/fs.h $K/param.h
 .PRECIOUS: %.o
 
 UPROGS=\
+    $U/_snail\
+	$U/_about\
+	$U/_benchmark\
+	$U/_broken\
 	$U/_cat\
+	$U/_clock\
 	$U/_echo\
 	$U/_forktest\
+	$U/_fnr\
 	$U/_grep\
 	$U/_init\
 	$U/_kill\
+	$U/_leetify\
 	$U/_ln\
 	$U/_ls\
 	$U/_mkdir\
+	$U/_pwd\
+	$U/_reboot\
 	$U/_rm\
 	$U/_sh\
 	$U/_stressfs\
-	$U/_usertests\
+	$U/_shutdown\
 	$U/_testchar\
+	$U/_tolower\
+	$U/_tracer\
+	$U/_usertests\
 	$U/_grind\
 	$U/_wc\
 	$U/_zombie\
 
-fs.img: mkfs/mkfs README.md $(UPROGS)
-	mkfs/mkfs fs.img README.md $(UPROGS)
+fs.img: mkfs/mkfs README.md time-machine.txt input.txt test1.sh test2.sh test3.sh test4.sh $(UPROGS)
+	mkfs/mkfs fs.img README.md time-machine.txt input.txt test1.sh test2.sh test3.sh test4.sh $(UPROGS)
 
 -include kernel/*.d user/*.d
 

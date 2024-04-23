@@ -5,12 +5,18 @@
 #include "memlayout.h"
 #include "spinlock.h"
 #include "proc.h"
+#include "strace.h"
+
+#define SHUTDOWN 0x5555
+#define REBOOT 0x7777
+
 
 uint64
 sys_exit(void)
 {
   int n;
   argint(0, &n);
+  STRACE_ARGS("%d", n, "", "");
   exit(n);
   return 0;  // not reached
 }
@@ -18,12 +24,14 @@ sys_exit(void)
 uint64
 sys_getpid(void)
 {
+  STRACE();
   return myproc()->pid;
 }
 
 uint64
 sys_fork(void)
 {
+  STRACE();
   return fork();
 }
 
@@ -32,6 +40,7 @@ sys_wait(void)
 {
   uint64 p;
   argaddr(0, &p);
+  STRACE_ARGS("%d", p, "", "");
   return wait(p);
 }
 
@@ -40,8 +49,8 @@ sys_sbrk(void)
 {
   uint64 addr;
   int n;
-
   argint(0, &n);
+  STRACE_ARGS("%d", n, "", "");
   addr = myproc()->sz;
   if(growproc(n) < 0)
     return -1;
@@ -52,9 +61,9 @@ uint64
 sys_sleep(void)
 {
   int n;
-  uint ticks0;
-
+  uint ticks0;;
   argint(0, &n);
+  STRACE_ARGS("Time: %d", n, "", "");
   acquire(&tickslock);
   ticks0 = ticks;
   while(ticks - ticks0 < n){
@@ -72,8 +81,8 @@ uint64
 sys_kill(void)
 {
   int pid;
-
   argint(0, &pid);
+  STRACE_ARGS("%d", pid, "", "");
   return kill(pid);
 }
 
@@ -83,9 +92,51 @@ uint64
 sys_uptime(void)
 {
   uint xticks;
-
+  
   acquire(&tickslock);
   xticks = ticks;
   release(&tickslock);
+  STRACE();
   return xticks;
+}
+
+uint64
+sys_shutdown(void)
+{
+  volatile uint32 *test_dev = (uint32 *) VIRT_TEST;
+  STRACE();
+  return *test_dev = SHUTDOWN;
+}
+
+uint64
+sys_reboot(void)
+{
+  volatile uint32 *test_dev = (uint32 *) VIRT_TEST;
+  STRACE();
+  return *test_dev = REBOOT;
+}
+
+uint64
+sys_clock(void)
+{
+  volatile uint64 *time = (uint64 *) CLOCK;
+  STRACE();
+  return *time;
+}
+
+uint64
+sys_strace(void)
+{
+  STRACE();
+  return myproc()->strace = 1;
+}
+
+uint64
+sys_wait2(void)
+{
+  uint64 status;
+  uint64 count;
+  argaddr(0, &status);
+  argaddr(1, &count);
+  return wait2(status, count);
 }

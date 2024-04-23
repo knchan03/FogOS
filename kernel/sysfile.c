@@ -15,6 +15,7 @@
 #include "sleeplock.h"
 #include "file.h"
 #include "fcntl.h"
+#include "strace.h"
 
 // Fetch the nth word-sized system call argument as a file descriptor
 // and return both the descriptor and the corresponding struct file.
@@ -402,6 +403,34 @@ sys_mknod(void)
     return -1;
   }
   iunlockput(ip);
+  end_op();
+  return 0;
+}
+
+uint64
+sys_getcwd(void)
+{
+  uint64 ubuf;
+  int sz;
+
+  begin_op();
+  argaddr(0, &ubuf);
+  argint(1, &sz);
+
+  if (sz > PGSIZE) {
+    end_op();
+    return -1;
+  }
+
+  char *buf = kalloc();
+  getcwd(buf, sz);
+
+  if (copyout(myproc()->pagetable, ubuf, buf, sz) < 0) {
+    end_op();
+    return -1;
+  }
+
+  kfree(buf);
   end_op();
   return 0;
 }

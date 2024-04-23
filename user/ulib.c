@@ -126,7 +126,6 @@ getline(char **lineptr, uint *n, int fd)
   return total_read;
 }
 
-
 int
 stat(const char *n, struct stat *st)
 {
@@ -193,73 +192,69 @@ memcpy(void *dst, const void *src, uint n)
 }
 
 int 
-isdigit(int c) 
+isdigit(int c)
 {
   return (c >= '0' && c <= '9');
 }
 
 int 
-isalpha(int c) 
+isalpha(int c)
 {
-  return (c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z');
+  return ((c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z'));
 }
 
 int 
-isupper(int c) 
+isupper(int c)
 {
   return c >= 'A' && c <= 'Z';
 }
 
 int 
-islower(int c) 
+islower(int c)
 {
   return c >= 'a' && c <= 'z';
 }
 
-int 
-toupper(int c) 
+int
+toupper(int c)
 {
   if (c >= 'a' && c <= 'z') {
-    return c - 'a' + 'A';
+  	return c - 'a' + 'A';
   }
   return c;
 }
 
-int 
-tolower(int c) 
+int
+tolower(int c)
 {
   if (c >= 'A' && c <= 'Z') {
-	  return c + 'a' - 'A';
+  	return c + 'a' - 'A';
   }
   return c;
 }
 
 int 
-ispunct(int c) 
+ispunct(int c)
 {
-  return ((c >= '!' && c <= '/') || (c >= ':' && c <= '@') || (c >= '[' && c <= '`') || (c >= '{' && c <= '~'));
+  return ((c >= '!' && c <= '/') || (c >= ':' && c <= '@') || (c >= '[' && c <= '\'') || (c >= '{' && c <= '~'));
 }
 
-
 int 
-isspace(int c) 
+isspace(int c)
 {
   return c == ' ' || c == '\f' || c == '\n' || c == '\r' || c == '\t' || c == '\v';
 }
 
-void findindexes(char* str, int c, int* indexes, int* count) 
-{
+void 
+findindexes(char *str, char c, int* indexes, int* count)
+{  
   *count = 0;
-  int i = 0;
-
-  while (str[i] != '\0') {
+  for (int i = 0; str[i] != '\0'; i++) {
   	if (str[i] == c) {
   		indexes[*count] = i;
   		(*count)++;
   	}
-  	i++;
   }
-
 }
 
 int charcount(char* str, int c)
@@ -311,5 +306,3 @@ int strcount(char* str, char* substr)
   }
   return count;
 }
-
-

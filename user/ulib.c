@@ -245,8 +245,11 @@ isspace(int c)
   return c == ' ' || c == '\f' || c == '\n' || c == '\r' || c == '\t' || c == '\v';
 }
 
+/**
+* Finds indices of a character within a string
+*/
 void 
-findindexes(char *str, char c, int* indexes, int* count)
+findindexes(char *str, int c, int* indexes, int* count)
 {  
   *count = 0;
   for (int i = 0; str[i] != '\0'; i++) {
@@ -257,6 +260,9 @@ findindexes(char *str, char c, int* indexes, int* count)
   }
 }
 
+/**
+* Returns total of occurences of a character within a string
+*/
 int charcount(char* str, int c)
 {
   int i = 0;
@@ -282,6 +288,9 @@ char *strpbrk(char* str, char* substr)
   return "\0";
 }
 
+/**
+* Finds if substring is at start of string
+*/
 int strfind(char* str, char* substr)
 {
   while (*substr != '\0') {
@@ -294,6 +303,10 @@ int strfind(char* str, char* substr)
   return 1;
 }
 
+
+/**
+* Returns number of substrings within a string
+*/
 int strcount(char* str, char* substr)
 {
   int count = 0;

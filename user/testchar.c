@@ -7,7 +7,6 @@ main(int argc, char* argv[])
 {
   //characters used for isspace
   char c = ' ';
-  char notspace = 's';
   
   if (!strcmp(argv[1], "usage")) {
   	printf("How to Use Test Program: \n");
@@ -51,37 +50,38 @@ main(int argc, char* argv[])
     printf("\"testchar strpbrk (string) (substring)\"\n\n"); 
   }
 
+  
   if (!strcmp(argv[1], "isdigit")) {
     c = argv[2][0];
-  	printf("func : isdigit / char : %c : %d\n", c, isdigit(c));
+  	printf("func : isdigit / char : %c : %d\n\n", c, isdigit(c));
   }
   else if (!strcmp(argv[1], "isalpha")) {
     c = argv[2][0];
-  	printf("func : isalpha / char : %c : %d\n", c, isalpha(c));
+  	printf("func : isalpha / char : %c : %d\n\n", c, isalpha(c));
   }
   else if (!strcmp(argv[1], "isupper")) {
     c = argv[2][0];
-  	printf("func : isupper / char : %c : %d\n", c, isupper(c));
+  	printf("func : isupper / char : %c : %d\n\n", c, isupper(c));
   }
   else if (!strcmp(argv[1], "islower")) {
     c = argv[2][0];
-  	printf("func : islower / char : %c : %d\n", c, islower(c));
+  	printf("func : islower / char : %c : %d\n\n", c, islower(c));
   }
   else if (!strcmp(argv[1], "toupper")) {
     c = argv[2][0];
-  	printf("func : toupper / char : %c --> %c\n", c, toupper(c));
+  	printf("func : toupper / char : %c --> %c\n\n", c, toupper(c));
   }
   else if (!strcmp(argv[1], "tolower")) {
     c = argv[2][0];
-  	printf("func : tolower / char : %c --> %c\n", c, tolower(c));
+  	printf("func : tolower / char : %c --> %c\n\n", c, tolower(c));
   }
   else if (!strcmp(argv[1], "ispunct")) {
     c = argv[2][0];
-  	printf("func : ispunct / char : %c : %d\n", c, ispunct(c));
+  	printf("func : ispunct / char : %c : %d\n\n", c, ispunct(c));
   }
   else if (!strcmp(argv[1], "isspace")) {
-  	printf("func : isspace / char : %c : %d\n", c, isspace(c));
-  	printf("func : isspace / char : %c : %d\n", notspace, isspace(notspace));
+    c = ' ';
+  	printf("func : isspace / char : %c : %d\n\n", c, isspace(c));
   }
   else if (!strcmp(argv[1], "findindexes")) {
     char* str = argv[2];
@@ -93,26 +93,27 @@ main(int argc, char* argv[])
     for (int i = 0; i < count; i++) {
   	  printf("%d ", indexes[i]);
     }
+    printf("\n\n");
   }
   else if (!strcmp(argv[1], "charcount")) {
     char* str = argv[2];
     char c = argv[3][0];
-  	printf("func: charcount / string : \"%s\" / char '%c' / count : %d", str, c, charcount(str, c));
+  	printf("func: charcount / string : \"%s\" / char '%c' / count : %d\n\n", str, c, charcount(str, c));
   }
   else if (!strcmp(argv[1], "strpbrk")) {
     char* str = argv[2];
     char* substr = argv[3];
     if (*strpbrk(str, substr) == '\0' ) {
-      printf("func: strpbrk / string : \"%s\" / substring %s' / first matching char : %s", str, substr, "NOT FOUND");
+      printf("func: strpbrk / string : \"%s\" / substring %s' / first matching char : %s\n\n", str, substr, "NOT FOUND");
     }
     else {
-  	  printf("func: strpbrk / string : \"%s\" / substring %s' / first matching char : %c", str, substr, *strpbrk(str, substr));
+  	  printf("func: strpbrk / string : \"%s\" / substring %s' / first matching char : %c\n\n", str, substr, *strpbrk(str, substr));
     }
   }
   else if (!strcmp(argv[1], "strcount")) {
     char* str = argv[2];
     char* substr = argv[3];
-  	printf("func: strcount / string : \"%s\" / substring %s' / count : %d", str, substr, strcount(str, substr));
+  	printf("func: strcount / string : \"%s\" / substring %s' / count : %d\n\n", str, substr, strcount(str, substr));
   }
   else{
     printf("A valid function was not chosen.\nPlease use \"testchar usage\" for how to use.\n");

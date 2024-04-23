@@ -146,8 +146,8 @@ UPROGS=\
 	$U/_wc\
 	$U/_zombie\
 
-fs.img: mkfs/mkfs README.md time-machine.txt input.txt test1.sh test2.sh test3.sh test4.sh $(UPROGS)
-	mkfs/mkfs fs.img README.md time-machine.txt input.txt test1.sh test2.sh test3.sh test4.sh $(UPROGS)
+fs.img: mkfs/mkfs README.md time-machine.txt input.txt test1.sh test2.sh test3.sh test4.sh testchar.sh $(UPROGS)
+	mkfs/mkfs fs.img README.md time-machine.txt input.txt test1.sh test2.sh test3.sh test4.sh testchar.sh $(UPROGS)
 
 -include kernel/*.d user/*.d
 

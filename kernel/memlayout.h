@@ -65,3 +65,10 @@
 //   TRAPFRAME (p->trapframe, used by the trampoline)
 //   TRAMPOLINE (the same page as in the kernel)
 #define TRAPFRAME (TRAMPOLINE - PGSIZE)
+
+// Mapped address to write shutdown/reboot to
+#define VIRT_TEST 0x100000
+
+// Mapped address of goldfish rtc
+#define CLOCK 0x101000
+

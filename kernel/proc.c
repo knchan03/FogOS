@@ -169,6 +169,7 @@ freeproc(struct proc *p)
   p->killed = 0;
   p->xstate = 0;
   p->state = UNUSED;
+  p->counter = 0;
 }
 
 // Create a user page table for a given process, with no user memory,
@@ -390,6 +391,12 @@ exit(int status)
 int
 wait(uint64 addr)
 {
+  return wait2(addr, 0);
+}
+
+int
+wait2(uint64 status, uint64 count)
+{
   struct proc *pp;
   int havekids, pid;
   struct proc *p = myproc();
@@ -408,20 +415,23 @@ wait(uint64 addr)
         if(pp->state == ZOMBIE){
           // Found one.
           pid = pp->pid;
-          if(addr != 0 && copyout(p->pagetable, addr, (char *)&pp->xstate,
+          if(status != 0 && copyout(p->pagetable, status, (char *)&pp->xstate,
                                   sizeof(pp->xstate)) < 0) {
             release(&pp->lock);
             release(&wait_lock);
             return -1;
           }
+          if (count != 0) {
+            copyout(p->pagetable, count, (char *)&pp->counter, sizeof(pp->counter));
+          }
           freeproc(pp);
           release(&pp->lock);
           release(&wait_lock);
           return pid;
-        }
-        release(&pp->lock);
-      }
+     }
+      release(&pp->lock);
     }
+  }
 
     // No point waiting if we don't have any children.
     if(!havekids || killed(p)){

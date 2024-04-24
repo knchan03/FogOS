@@ -73,3 +73,5 @@ testchar strcount Mississippi ss
 echo Testing strcount | String : "Mississipi" | Substring : "river"
 testchar strcount Mississippi river
 
+echo End of test...
+exit
